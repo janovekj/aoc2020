@@ -1,8 +1,6 @@
-import { readLines } from "../readInput.ts";
+import { PuzzleSolverProps } from "../program.ts";
 
-const lines = readLines("02");
-
-const partOne = () => {
+export const partOne = ({ lines }: PuzzleSolverProps) => {
   const validLines = lines.filter((line) => {
     const [, min, max, char, pw] = /^(\d+)-(\d+) (\w): (\w+)$/.exec(line) ?? [];
 
@@ -13,9 +11,8 @@ const partOne = () => {
   });
   return validLines.length;
 };
-console.log(`Part one: ${partOne()}`);
 
-const partTwo = () => {
+export const partTwo = ({ lines }: PuzzleSolverProps) => {
   const validLines = lines.filter((line) => {
     const [, firstPos, secondPos, char, pw] =
       /^(\d+)-(\d+) (\w): (\w+)$/.exec(line) ?? [];
@@ -28,4 +25,3 @@ const partTwo = () => {
 
   return validLines.length;
 };
-console.log(`Part two: ${partTwo()}`);

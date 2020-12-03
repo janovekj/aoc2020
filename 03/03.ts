@@ -1,8 +1,8 @@
-import { readLines } from "../readInput.ts";
+import { PuzzleSolverProps } from "../program.ts";
 
-const lines = readLines("03");
-
-const traverse = (xIncrement: number, yIncrement: number) =>
+const traverse = (xIncrement: number, yIncrement: number) => ({
+  lines,
+}: PuzzleSolverProps) =>
   lines.reduce(
     (acc, curr, index, array) => {
       const y = acc.pos[1] + yIncrement;
@@ -24,10 +24,9 @@ const traverse = (xIncrement: number, yIncrement: number) =>
     { pos: [0, 0], trees: 0 }
   ).trees;
 
-const partOne = () => traverse(3, 1);
-console.log(`Part one: ${partOne()}`);
+export const partOne = traverse(3, 1);
 
-const partTwo = () => {
+export const partTwo = (props: PuzzleSolverProps) => {
   const increments = [
     [1, 1],
     [3, 1],
@@ -37,10 +36,10 @@ const partTwo = () => {
   ];
 
   const treesProduct = increments.reduce(
-    (acc, [xIncrement, yIncrement]) => acc * traverse(xIncrement, yIncrement),
+    (acc, [xIncrement, yIncrement]) =>
+      acc * traverse(xIncrement, yIncrement)(props),
     1
   );
 
   return treesProduct;
 };
-console.log(`Part two: ${partTwo()}`);

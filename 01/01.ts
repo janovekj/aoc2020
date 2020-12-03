@@ -1,9 +1,8 @@
-import { readLines } from "../readInput.ts";
+import { PuzzleSolverProps } from "../program.ts";
 
-const lines = readLines("01");
-const numbers = lines.map((line) => parseInt(line));
+export const partOne = ({ lines }: PuzzleSolverProps) => {
+  const numbers = lines.map((line) => parseInt(line));
 
-const partOne = () => {
   const sorted = [...numbers].sort();
 
   const first = sorted.find((n1) => sorted.some((n2) => n2 === 2020 - n1));
@@ -17,9 +16,10 @@ const partOne = () => {
   const result = first * second;
   return result;
 };
-console.log(`Part one: ${partOne()}`);
 
-const partTwo = () => {
+export const partTwo = ({ lines }: PuzzleSolverProps) => {
+  const numbers = lines.map((line) => parseInt(line));
+
   const sorted = [...numbers].sort();
 
   let nums: number[] = [];
@@ -47,4 +47,3 @@ const partTwo = () => {
   const result = nums[0] * nums[1] * nums[2];
   return result;
 };
-console.log(`Part two: ${partTwo()}`);
