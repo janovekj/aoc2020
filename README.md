@@ -1,0 +1,1 @@
+`sh watch.sh <day>`
