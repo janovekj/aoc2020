@@ -11,7 +11,9 @@ export const partTwo = ({ lines }: PuzzleSolverProps) => {
 };
 `;
 
-const day = format(new Date(), "dd");
+const [argsDay] = Deno.args;
+
+const day = argsDay ?? format(new Date(), "dd");
 
 const dir = `./${day}`;
 

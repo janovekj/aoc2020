@@ -1,6 +1,10 @@
+import { format } from "https://deno.land/std@0.79.0/datetime/mod.ts";
+
 const readInput = (day: string) => Deno.readTextFileSync(`./${day}/${day}.txt`);
 
-const [day] = Deno.args;
+const [argsDay] = Deno.args;
+
+const day = argsDay ?? format(new Date(), "dd");
 
 export interface PuzzleSolverProps {
   raw: string;
