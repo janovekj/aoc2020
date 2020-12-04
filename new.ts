@@ -15,11 +15,10 @@ const day = format(new Date(), "dd");
 
 const dir = `./${day}`;
 
-const info = Deno.statSync(dir);
-
-if (info.isDirectory) {
+try {
+  Deno.statSync(dir);
   console.log(`Day ${day} already exists`);
-} else {
+} catch (error) {
   Deno.mkdirSync(dir);
   Deno.writeTextFileSync(`${dir}/${day}.ts`, moduleTemplate);
   Deno.writeTextFileSync(`${dir}/${day}.txt`, "");
