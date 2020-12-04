@@ -21,25 +21,25 @@ const isNumberInRange = (str: string, min: number, max: number) => {
   return num >= min && num <= max;
 };
 
-const uoms = [
+const units = [
   ["cm", 150, 193],
   ["in", 59, 76],
 ] as const;
 
 const validateHeight = (h: string) =>
-  uoms.some(([unit, min, max]) =>
+  units.some(([unit, min, max]) =>
     isNumberInRange(h.replace(unit, ""), min, max)
   );
 
-const haircolors = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"];
+const eyecolors = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"];
 
 export const partTwo = ({ raw }: PuzzleSolverProps) => {
   const lines = raw.split("\n\n").map((entry) => entry.split("\n").join(" "));
   const passports: Record<string, string>[] = lines.map((line) => {
-    const object = Object.fromEntries(
+    const passport = Object.fromEntries(
       line.split(" ").map((field) => field.split(":"))
     );
-    return object;
+    return passport;
   });
 
   const validPassports = passports.filter((passport) => {
@@ -53,7 +53,7 @@ export const partTwo = ({ raw }: PuzzleSolverProps) => {
       isNumberInRange(passport.eyr, 2020, 2030) &&
       validateHeight(passport.hgt) &&
       /^#[0-9a-f]{6}$/.test(passport.hcl) &&
-      haircolors.includes(passport.ecl) &&
+      eyecolors.includes(passport.ecl) &&
       /^\d{9}$/.test(passport.pid)
     );
   });
