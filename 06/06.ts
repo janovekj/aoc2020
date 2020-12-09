@@ -1,6 +1,5 @@
 import { PuzzleSolverProps } from "../program.ts";
-
-const sum = (acc: number, curr: number) => acc + curr;
+import { sum } from "../utils.ts";
 
 export const partOne = ({ raw }: PuzzleSolverProps) => {
   const groups = raw.split("\n\n");
