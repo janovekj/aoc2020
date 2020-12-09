@@ -68,18 +68,18 @@ const bootMachine = (state: State, actions: Action[]): State => {
 };
 
 const run = (actions: Action[]) => {
-  let initialState: State = {
+  let state: State = {
     status: "executing",
     history: [],
     index: 0,
     value: 0,
   };
 
-  return actions.reduce(
-    (state) =>
-      state.status === "executing" ? bootMachine(state, actions) : state,
-    initialState
-  );
+  while (state.status === "executing") {
+    state = bootMachine(state, actions);
+  }
+
+  return state;
 };
 
 export const partOne = ({ lines }: PuzzleSolverProps) => {
